@@ -4,6 +4,7 @@ CREATE TABLE Categories (
 Id INT PRIMARY KEY IDENTITY(1,1),
 Name NVARCHAR(255)
 )
+
 CREATE TABLE Tags  (
 Id INT PRIMARY KEY IDENTITY(1,1),
 Name NVARCHAR(255)
@@ -27,9 +28,16 @@ Description NVARCHAR(1000) NOT NULL,
 UserId int FOREIGN KEY  REFERENCES Users(Id),
 CategoryId int FOREIGN KEY  REFERENCES Categories(Id)
 );
+
+
 CREATE TABLE BlogsTags (
 Id INT PRIMARY KEY IDENTITY(1,1),
 BlogsId int FOREIGN KEY  REFERENCES Blogs(Id),
 TagsId int FOREIGN KEY  REFERENCES Tags(Id),
 );
+create view Info as
+Select B.Title,U.FullName from Blogs as B 
+Cross join Users as U
+
+select * from Info
 
